@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <link href="css/style.css" rel="stylesheet"/>
+</head>
+<body ng-app="myApp">
+  <div ng-controller="myController">
+    <input type="text" placeholder="Search by name" ng-model="searchText.name" />
+	<input type="text" placeholder="Search by city" ng-model="searchText.city" />
+	<br><br>
+	<input type="checkbox" ng-model="hideSalary"/>Hide Salary <br><br>
+	
+    <table>
+	  <thead>
+	    <tr>
+		  <th>name</th>
+		  <th>gender</th>
+		  <th>city</th>
+		  <th ng-hide="hideSalary">salary</th>
+		<tr>
+	  </thead>
+	  <tbody>
+<!--    <tr ng-repeat="employee in employees | orderBy:'dateOfBirth':true ">-->        
+        <tr ng-repeat="employee in employees | filter: searchText ">
+		   <td>{{employee.name}}</td>
+		   <td>{{employee.gender}}</td>	
+		   <td>{{employee.city}}</td>	
+		   <td ng-hide="hideSalary">{{employee.salary}}</td>
+		</tr>
+	  </tbody>
+	</table>
+  
+  </div>
+<script src="js/angular.js"></script>
+<script src="js/script11.js"></script>
+</body>
+</html>
